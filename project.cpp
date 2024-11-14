@@ -3,14 +3,14 @@ using namespace std;
 
 // ====   FUNCTIONS  ======
 void main_menu();
-void student_login();
-void student_menu(int rollno);
+void student_login();  // FUNCTION FOR LOGG IN
+void student_menu(int rollno);     //FUNCTION FOR PRINTING STUDENT WHOOLE PROFIIE
 
 
 
 // =====  VARIABLES ========
 int rollno[10000]={0,1,2,3};
-string studentname[10000]={"","Asad khan","Saad Khan"};
+string studentname[10000]={"","Asad khan","Saad Khan"};         //THIS DATA WILL BE ALREADY STORED
 string fathername[10000]={"","Abdul Wahid","Amjad Ali"};
 string studentphone[10000]={"","0348475592","03458877645"};
 int studentpassword[10000]={0,4774,4748};
@@ -26,7 +26,7 @@ float eng_gpa[10000]={0,3.5,3.3};
 
 int main(){
    
-    main_menu();
+    main_menu(); //THIS WILL START THE PROGRAM
     
 
 
@@ -40,15 +40,15 @@ void main_menu(){
     cout<<"1. Run as Admin.\n2. Run as student.\n\nChoose option(1 or 2)";
     cin>>option;
     if(option==1){
-            // ADD FUNCTION TO YOUR MAIN MENU
+            // ADD FUNCTION TO ADMIN MENU
     }else{
         student_login();
     }
 }
 
 void student_login(){
-    int temp_rollno;
-    int temp_password;
+    int temp_rollno;  // WILL TEMPORARILY STORE ROLL NUMBER
+    int temp_password;  // EWILL STORE PASSWORD TEMOPRARILY
     bool repeat;
     do{
     repeat=true;
@@ -58,7 +58,7 @@ void student_login(){
     cin>>temp_password;
 
     if((temp_rollno==rollno[temp_rollno]) && (temp_password==studentpassword[temp_rollno])){
-        student_menu(temp_rollno);
+        student_menu(temp_rollno);  // WILL PRINT STUDENT DETAILS IF ROLL NO AND PASSWORD MATCH
     }
     else{
         cout<<"\nThis rollno or password doesnot exist. Enter again."<<endl;
