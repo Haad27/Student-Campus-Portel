@@ -13,7 +13,7 @@ int rollno[10000]={0,1,2,3};
 string studentname[10000]={"","Asad khan","Saad Khan"};         //THIS DATA WILL BE ALREADY STORED
 string fathername[10000]={"","Abdul Wahid","Amjad Ali"};
 string studentphone[10000]={"","0348475592","03458877645"};
-int studentpassword[10000]={0,4774,4748};
+int studentpassword[10000]={0,4774,4774};
 float semestergpa[10000]={0,3.5,3.3};
 // COURSES GPA
 float phy_gpa[10000]={0,3.5,3.3};
