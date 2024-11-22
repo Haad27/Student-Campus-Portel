@@ -51,12 +51,99 @@ void add_members()
         if(isintvalid==false){
             continue;
         }
+        if(rolenumber>=1 && rolenumber<10000){
 
-            // check if the student already exists in database or not
-        if (rollno[rolenumber] == rolenumber)
-        {
-            cout << "\nStudent Already Exists:\n";
-            cout << "Name: " << studentname[rolenumber] << "\n"
+                // check if the student already exists in database or not
+            if (rollno[rolenumber] == rolenumber)
+            {
+                cout << "\nStudent Already Exists:\n";
+                cout << "Name: " << studentname[rolenumber] << "\n"
+                        << "Registration Number: " << regNO[rolenumber] << "\n"
+                        << "Father Name: " << father[rolenumber] << "\n"
+                        << "Phone Number: " << studentphone[rolenumber] << "\n"
+                        << "Password: " << studentpassword[rolenumber] << "\n"
+                        << "Physics GPA: " << phy_gpa[rolenumber] << "\n"
+                        << "Chemistry GPA: " << chem_gpa[rolenumber] << "\n"
+                        << "Biology GPA: " << bio_gpa[rolenumber] << "\n"
+                        << "Mathematics GPA: " << math_gpa[rolenumber] << "\n"
+                        << "English GPA: " << eng_gpa[rolenumber] << "\n"
+                        << "Semester GPA: " << cgpa[rolenumber] << "\n";
+            }
+                // if student not found
+            else
+                {   
+                    cout << "Enter Password 4 digit: ";
+                    cin >> studentpassword[rolenumber];
+                    intCheck(); //to check if integer or not
+                    if(isintvalid==false){
+                        continue;
+                    }
+
+                    rollno[rolenumber] = rolenumber;
+
+                    // getting data 
+                    cout << "\nEnter details for student " << rolenumber << ":\n";
+                    cout << "Enter Name: ";
+
+                    cin.ignore();  // remove garbage value
+                    // storing data in arrays
+                    getline(cin, studentname[rolenumber]);
+
+                    cout << "Enter Registration Number: ";
+                    cin >> regNO[rolenumber];
+                    
+                    cout << "Enter Father Name: ";
+                    cin.ignore(); // remove garbage value
+                    getline(cin, father[rolenumber]);
+
+                    cout << "Enter Phone Number: ";
+                    cin >> studentphone[rolenumber];
+
+                    do{
+                    cout << "Enter Physics GPA: ";
+                    cin >> phy_gpa[rolenumber];
+                    intCheck(); //to check if integer or not
+                    if(isintvalid==false){
+                        continue;
+                    }
+
+                    cout << "Enter Chemistry GPA: ";
+                    cin >> chem_gpa[rolenumber];
+                    intCheck(); //to check if integer or not
+                    if(isintvalid==false){
+                        continue;
+                    }
+
+                    cout << "Enter Biology GPA: ";
+                    cin >> bio_gpa[rolenumber];
+                    intCheck(); //to check if integer or not
+                    if(isintvalid==false){
+                        continue;
+                    }
+
+                    cout << "Enter Mathematics GPA: ";
+                    cin >> math_gpa[rolenumber];
+                    intCheck(); //to check if integer or not
+                    if(isintvalid==false){
+                        continue;
+                    }
+
+                    cout << "Enter English GPA: ";
+                    cin >> eng_gpa[rolenumber];
+                    intCheck(); //to check if integer or not
+                    if(isintvalid==false){
+                        continue;
+                    }
+
+                    repeat=false;
+                    }while(repeat!=false);
+
+
+                
+                
+                // displaying the end results
+                cout << "\nStudent Details Added:\n";
+                cout << "Name: " << studentname[rolenumber] << "\n"
                     << "Registration Number: " << regNO[rolenumber] << "\n"
                     << "Father Name: " << father[rolenumber] << "\n"
                     << "Phone Number: " << studentphone[rolenumber] << "\n"
@@ -67,103 +154,22 @@ void add_members()
                     << "Mathematics GPA: " << math_gpa[rolenumber] << "\n"
                     << "English GPA: " << eng_gpa[rolenumber] << "\n"
                     << "Semester GPA: " << cgpa[rolenumber] << "\n";
-        }
-            // if student not found
-            else
-            {   
-                cout << "Enter Password 4 digit: ";
-                cin >> studentpassword[rolenumber];
-                intCheck(); //to check if integer or not
-                if(isintvalid==false){
-                    continue;
+
+                i++;
+                totalStudents++;
                 }
 
-                rollno[rolenumber] = rolenumber;
-
-                // getting data 
-                cout << "\nEnter details for student " << rolenumber << ":\n";
-                cout << "Enter Name: ";
-
-                cin.ignore();  // remove garbage value
-                // storing data in arrays
-                getline(cin, studentname[rolenumber]);
-
-                cout << "Enter Registration Number: ";
-                cin >> regNO[rolenumber];
-                
-                cout << "Enter Father Name: ";
-                cin.ignore(); // remove garbage value
-                getline(cin, father[rolenumber]);
-
-                cout << "Enter Phone Number: ";
-                cin >> studentphone[rolenumber];
-
-                do{
-                cout << "Enter Physics GPA: ";
-                cin >> phy_gpa[rolenumber];
-                intCheck(); //to check if integer or not
-                if(isintvalid==false){
-                    continue;
-                }
-
-                cout << "Enter Chemistry GPA: ";
-                cin >> chem_gpa[rolenumber];
-                intCheck(); //to check if integer or not
-                if(isintvalid==false){
-                    continue;
-                }
-
-                cout << "Enter Biology GPA: ";
-                cin >> bio_gpa[rolenumber];
-                intCheck(); //to check if integer or not
-                if(isintvalid==false){
-                    continue;
-                }
-
-                cout << "Enter Mathematics GPA: ";
-                cin >> math_gpa[rolenumber];
-                intCheck(); //to check if integer or not
-                if(isintvalid==false){
-                    continue;
-                }
-
-                cout << "Enter English GPA: ";
-                cin >> eng_gpa[rolenumber];
-                intCheck(); //to check if integer or not
-                if(isintvalid==false){
-                    continue;
-                }
-
-                repeat=false;
-                }while(repeat!=false);
-
-
-            
-            
-            // displaying the end results
-            cout << "\nStudent Details Added:\n";
-            cout << "Name: " << studentname[rolenumber] << "\n"
-                 << "Registration Number: " << regNO[rolenumber] << "\n"
-                 << "Father Name: " << father[rolenumber] << "\n"
-                 << "Phone Number: " << studentphone[rolenumber] << "\n"
-                 << "Password: " << studentpassword[rolenumber] << "\n"
-                 << "Physics GPA: " << phy_gpa[rolenumber] << "\n"
-                 << "Chemistry GPA: " << chem_gpa[rolenumber] << "\n"
-                 << "Biology GPA: " << bio_gpa[rolenumber] << "\n"
-                 << "Mathematics GPA: " << math_gpa[rolenumber] << "\n"
-                 << "English GPA: " << eng_gpa[rolenumber] << "\n"
-                 << "Semester GPA: " << cgpa[rolenumber] << "\n";
-
-            i++;
-            totalStudents++;
+            cout << "\nPress 'Y' to add another student or 'Press any key' to return to main menu: ";
+            cin >> choice;
+            if(choice == 'y' || choice == 'Y'){
+                repeat=true;
             }
-
-        cout << "\nPress 'Y' to add another student or 'Press any key' to return to main menu: ";
-        cin >> choice;
-        if(choice == 'y' || choice == 'Y'){
+            else{repeat=false;}
+        }
+        else{
+            cout<<"Role number out of range.Please enter again"<<endl;
             repeat=true;
         }
-        else{repeat=false;}
 
     } while (repeat==true);
     cout << "Thank you \n";
