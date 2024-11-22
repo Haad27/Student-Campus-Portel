@@ -9,6 +9,7 @@ void student_menu(int rollno);     //FUNCTION FOR PRINTING STUDENT WHOOLE PROFII
 
 
 // =====  VARIABLES ========
+
 int rollno[10000]={0,1,2,3};
 string studentname[10000]={"","Asad khan","Saad Khan"};         //THIS DATA WILL BE ALREADY STORED
 string fathername[10000]={"","Abdul Wahid","Amjad Ali"};
@@ -21,6 +22,8 @@ float bio_gpa[10000]={0,3.5,3.3};
 float chem_gpa[10000]={0,3.5,3.3};
 float math_gpa[10000]={0,3.5,3.3};
 float eng_gpa[10000]={0,3.5,3.3};
+
+
 
 
 
@@ -38,7 +41,7 @@ void main_menu(){
     string option;  // WILL TAKE THIS STRINNG TO HANDLE ALPHABETS
     bool repeat;
     do{
-        repeat=true;
+        repeat=false;
         cout<<"\n======  WELCOME TO THE CAMPUS PORTAL  ======\n\n";
         cout<<"1. Run as Admin.\n2. Run as student.\n\nChoose option(1 or 2)";
         cin>>option;
@@ -47,10 +50,10 @@ void main_menu(){
         }else if(option=="2"){
             student_login();
         }else{
-            repeat=false;
+            repeat=true;
             cout<<"\n>>>>>>Please enter valid input<<<<<<<"<<endl;
         }
-    }while(repeat==false);
+    }while(repeat==true);
 }
 
 void student_login(){
@@ -59,14 +62,14 @@ void student_login(){
     long long int temp_password;  // EWILL STORE PASSWORD TEMOPRARILY
     bool repeat;
     do{
-        repeat=true;
+        repeat=false;
         cout<<"\n=====  LOGIN FIRST  =====\n\nEnter your roll number(1-10000): "<<endl;
         cin>>temp_rollno;
         if(cin.fail()){  //CIN.FAIL() MEANS THAT IF WRONG INPUT IS ENTER THE CONDITION WILLBE TRUE
             cin.clear(); // IT WILL CLEAR THE INPUT SO PROGRAM WONT CRASH
             cin.ignore(100,'\n'); // IT WILL  IGNORE ALL CHARACTER ENTERD TO NOT DISTURB FURTHER INPUTS
             cout<<"\n>>>>>Please enter a valid input<<<<<<"<<endl;
-            repeat=false;   //CONDITION FOR DO WHILE LOOP IS SET TO TRUE SO PROG WILL RUN AGAINN
+            repeat=true;   //CONDITION FOR DO WHILE LOOP IS SET TO TRUE SO PROG WILL RUN AGAINN
             continue; // SKIP THIS  ITERATION
         }else{
             if(temp_rollno>0 && temp_rollno<=10000){    // ROLL NO SHOULD BE LESS THAN 10000 TO  AVOID MESSING WITH ARRAYS
@@ -77,7 +80,7 @@ void student_login(){
                     cin.clear();
                     cin.ignore(100,'\n');
                     cout<<"\n>>>>>Please enter a valid input<<<<<<"<<endl;
-                    repeat=false;
+                    repeat=true;
                     continue;
                 }else{
                     if((temp_rollno==rollno[temp_rollno]) && (temp_password==studentpassword[temp_rollno])){
@@ -85,24 +88,24 @@ void student_login(){
                     }
                     else{
                         cout<<"\n>>>>>This rollno or password doesnot exist. Enter again<<<<<<"<<endl;
-                        repeat=false;
+                        repeat=true;
                     }
                 }
             }
             else{
-                repeat=false;
+                repeat=true;
                 cout<<"\n>>>>>>This rollno is out of range. Enter again(1 -  10000)<<<<<<"<<endl;
 
             }
         }
-    }while(repeat==false);
+    }while(repeat==true);
 
 }
 
 void student_menu(int rollno){
     bool repeat=true;
     do{
-        cout<<"\n\n===== STUDENT PROFILE =====\n"<<endl;
+        cout<<"\n\n================== STUDENT PROFILE ===================\n"<<endl;
         cout<<"NAME : "<<studentname[rollno]<<endl;
         cout<<"FATHER NAME : "<<fathername[rollno]<<endl;
         cout<<"CONTACT NUMBER : "<<studentphone[rollno]<<endl;
@@ -114,7 +117,7 @@ void student_menu(int rollno){
         cout<<"4. BIOLOGY -  GPA: "<<bio_gpa[rollno]<<endl;
         cout<<"5. ENGLISH -  GPA: "<<eng_gpa[rollno]<<endl;
         cout<<"\nYEARLY -  GPA: "<<semestergpa[rollno]<<endl;
-        cout<<endl<<endl;
+        cout<<"============================================"<<endl<<endl;
         string condition;
         // A MENU FURTHER
         cout<<"1. Back to start.\n2. End program."<<endl;

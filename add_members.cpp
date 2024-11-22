@@ -5,7 +5,7 @@ using namespace std;
 
 // declerations
 char choice;
-bool repeat;
+bool repeat; 
 bool isintvalid;
 long long int rolenumber;
 int i = 0, totalStudents = 0;
@@ -33,7 +33,6 @@ void intCheck(){
         cin.ignore(100,'\n');
         cout<<">>> Please Enter valid input <<<"<<endl;
         isintvalid=false;
-        repeat=true;
     }
     else{isintvalid=true;}
 }
@@ -49,6 +48,7 @@ void add_members()
         cin >> rolenumber;
         intCheck(); //to check if integer or not
         if(isintvalid==false){
+            repeat=true;
             continue;
         }
         if(rolenumber>=1 && rolenumber<10000){
@@ -58,16 +58,16 @@ void add_members()
             {
                 cout << "\nStudent Already Exists:\n";
                 cout << "Name: " << studentname[rolenumber] << "\n"
-                        << "Registration Number: " << regNO[rolenumber] << "\n"
-                        << "Father Name: " << father[rolenumber] << "\n"
-                        << "Phone Number: " << studentphone[rolenumber] << "\n"
-                        << "Password: " << studentpassword[rolenumber] << "\n"
-                        << "Physics GPA: " << phy_gpa[rolenumber] << "\n"
-                        << "Chemistry GPA: " << chem_gpa[rolenumber] << "\n"
-                        << "Biology GPA: " << bio_gpa[rolenumber] << "\n"
-                        << "Mathematics GPA: " << math_gpa[rolenumber] << "\n"
-                        << "English GPA: " << eng_gpa[rolenumber] << "\n"
-                        << "Semester GPA: " << cgpa[rolenumber] << "\n";
+                    << "Registration Number: " << regNO[rolenumber] << "\n"
+                    << "Father Name: " << father[rolenumber] << "\n"
+                    << "Phone Number: " << studentphone[rolenumber] << "\n"
+                    << "Password: " << studentpassword[rolenumber] << "\n"
+                    << "Physics GPA: " << phy_gpa[rolenumber] << "\n"
+                    << "Chemistry GPA: " << chem_gpa[rolenumber] << "\n"
+                    << "Biology GPA: " << bio_gpa[rolenumber] << "\n"
+                    << "Mathematics GPA: " << math_gpa[rolenumber] << "\n"
+                    << "English GPA: " << eng_gpa[rolenumber] << "\n"
+                    << "Semester GPA: " << cgpa[rolenumber] << "\n";
             }
                 // if student not found
             else
@@ -76,6 +76,7 @@ void add_members()
                     cin >> studentpassword[rolenumber];
                     intCheck(); //to check if integer or not
                     if(isintvalid==false){
+                        repeat=true;
                         continue;
                     }
 
@@ -104,6 +105,7 @@ void add_members()
                     cin >> phy_gpa[rolenumber];
                     intCheck(); //to check if integer or not
                     if(isintvalid==false){
+                        repeat=true;
                         continue;
                     }
 
@@ -111,6 +113,7 @@ void add_members()
                     cin >> chem_gpa[rolenumber];
                     intCheck(); //to check if integer or not
                     if(isintvalid==false){
+                        repeat=true;
                         continue;
                     }
 
@@ -118,6 +121,7 @@ void add_members()
                     cin >> bio_gpa[rolenumber];
                     intCheck(); //to check if integer or not
                     if(isintvalid==false){
+                        repeat=true;
                         continue;
                     }
 
@@ -125,6 +129,7 @@ void add_members()
                     cin >> math_gpa[rolenumber];
                     intCheck(); //to check if integer or not
                     if(isintvalid==false){
+                        repeat=true;
                         continue;
                     }
 
@@ -132,6 +137,7 @@ void add_members()
                     cin >> eng_gpa[rolenumber];
                     intCheck(); //to check if integer or not
                     if(isintvalid==false){
+                        repeat=true;
                         continue;
                     }
 
