@@ -11,7 +11,7 @@ void stringcheck(string &value);
 void phonecheck(string &value);
 void add_members();
 void admin_menu();
-
+void view_student();
 
 
 // =====  VARIABLES ========
@@ -23,7 +23,7 @@ bool isstringvalid;
 long long int rolenumber;
 
 
-int rollno[10000]={0,1,2,3};
+int rollno[10000]={0,1,2};
 string studentname[10000]={"","Asad khan","Saad Khan"};         //THIS DATA WILL BE ALREADY STORED
 string father[10000]={"","Abdul Wahid","Amjad Ali"};
 string studentphone[10000]={"","03484755592","03458877645"};
@@ -166,7 +166,7 @@ void admin_menu()
         cout << "               MAIN MENU              \n";
         cout << "---------------------------------------\n";
         cout << "1. Add Student\n";
-        cout << "2. Find a student\n";
+        cout << "2. Search a student\n";
         cout << "3. View All Students\n";
         cout << "4. Remove Student\n";
         cout << "5. Change Details\n";
@@ -190,8 +190,7 @@ void admin_menu()
             cout << "\n=======================================\n";
             cout << "         VIEW STUDENT SECTION         \n";
             cout << "=======================================\n";
-            // will be added soon
-            // view_student();
+            view_student();
             break;
 
         case 3:
@@ -582,3 +581,58 @@ void add_members()
     } while (repeat == true);
 }
 
+void view_student(){
+    do{
+        repeat=false;
+        cout<<"Enter the students roll no(1 - 10,000): "<<endl;
+        cin>>rolenumber;
+        intCheck();
+        if(isintvalid==false){
+            repeat=true;
+            continue;
+        }
+        else if(rolenumber<=0 || rolenumber>10000){
+            repeat=true;
+            continue;
+        }
+        else{
+            if(rolenumber==rollno[rolenumber]){
+                repeat=false;
+            }else{
+                cout<<"This rolenumber doesnot exists, Sorry. Try another."<<endl;
+                repeat=true;
+                continue;
+            }
+        }
+    }while(repeat==true);
+
+    cout<<"\n\n================== STUDENT PROFILE ===================\n"<<endl;
+    cout<<"NAME : "<<studentname[rolenumber]<<endl;
+    cout<<"FATHER NAME : "<<father[rolenumber]<<endl;
+    cout<<"CONTACT NUMBER : "<<studentphone[rolenumber]<<endl;
+    cout<<"LOGIN PASSWORD : "<<studentpassword[rolenumber]<<endl;
+    cout<<"\n=== COURSES ==="<<endl;
+    cout<<"1. PHYSICS -  GPA: "<<phy_gpa[rolenumber]<<endl;
+    cout<<"2. CHEMISTRY -  GPA: "<<chem_gpa[rolenumber]<<endl;
+    cout<<"3. MATH -  GPA: "<<math_gpa[rolenumber]<<endl;
+    cout<<"4. BIOLOGY -  GPA: "<<bio_gpa[rolenumber]<<endl;
+    cout<<"5. ENGLISH -  GPA: "<<eng_gpa[rolenumber]<<endl;
+    cout<<"\nSEMESTER -  GPA: "<<cgpa[rolenumber]<<endl;
+    cout<<"============================================"<<endl<<endl;
+    do{
+        repeat=false;
+        string condition;
+        // A MENU FURTHER
+        cout<<"1. Back to Menu.\n2. See another Student"<<endl;
+        cin>>condition;
+        if(condition=="1"){
+            admin_menu();
+        }else if(condition=="2"){
+            view_student();
+        }else{
+            cout<<">>>Enter valid input<<<"<<endl;
+            repeat=true;
+        }
+    }while(repeat==true);
+       
+}
