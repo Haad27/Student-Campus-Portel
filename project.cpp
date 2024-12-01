@@ -63,13 +63,16 @@ void main_menu(){
     do{
         repeat=false;
         cout<<"\n======  WELCOME TO THE CAMPUS PORTAL  ======\n\n";
-        cout<<"1. Run as Admin.\n2. Run as student.\n\nChoose option(1 or 2)";
+        cout<<"1. Run as Admin.\n2. Run as student.\n3. End program.\n\nChoose option: ";
         cin>>option;
         if(option=="1"){
                 admin_menu();
         }else if(option=="2"){
             student_login();
-        }else{
+        }else if(option=="3"){
+            return;
+        }
+        else{
             repeat=true;
             cout<<"\n>>>>>>Please enter valid input<<<<<<<"<<endl;
         }
@@ -145,7 +148,7 @@ void student_menu(int rollno){
         if(condition=="1"){
             main_menu();
         }else if(condition=="2"){
-            break;
+            return;
         }else{
             cout<<">>>Enter valid input<<<"<<endl;
             repeat=false;
