@@ -1,0 +1,84 @@
+void intCheck()
+{
+    if (cin.fail())
+    {
+        cin.clear();
+        cin.ignore(100, '\n');
+        cout << ">>> Please Enter valid input <<<" << endl;
+        isintvalid = false;
+    }
+    else
+    {
+        isintvalid = true;
+    }
+}
+void stringcheck(string &value)
+{
+    bool temp;
+    isstringvalid = true;
+    // Check if string is empty
+
+    if (value.empty())
+    {
+        isstringvalid = false;
+        temp = false;
+    }
+
+    // Check each character
+    for (char x : value)
+    {
+        if (isdigit(x))
+        {
+            isstringvalid = false;
+            temp = false;
+        }
+        else
+        {
+            temp = true;
+            repeat = true;
+        }
+    }
+    if (temp == false)
+    {
+        cout << "Enter a string without numbers" << endl;
+    }
+}
+void phonecheck(string &value)
+{
+    bool temp;
+    isstringvalid = true;
+    // Check if string is empty
+
+    if (value.empty())
+    {
+        isphonevalid = false;
+        temp = false;
+    }
+
+    // Check each character
+    for (char x : value)
+    {
+        if (isdigit(x))
+        {
+            isphonevalid = true;
+            temp = true;
+        }
+        else
+        {
+            temp = false;
+            repeat = false;
+        }
+    }
+    if (temp == false)
+    {
+        cout << "Enter numbers only" << endl;
+    }
+}
+
+void isintvalidbool()
+{
+    if (isintvalid == false)
+    {
+        repeat = true;
+    }
+}
