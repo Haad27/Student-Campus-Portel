@@ -1,50 +1,50 @@
 #include<iostream>
 #include<string>
+#include<cstdlib>
 using namespace std;
 
 
 //===========================================================================
 // =============================  FUNCTIONS  ================================
 //===========================================================================
-void main_menu();
+void main_menu();   // a  main menu or start of prog
 void student_login();  // FUNCTION FOR LOGG IN
 void student_menu(int rollno);     //FUNCTION FOR PRINTING STUDENT WHOLE PROFIIE
-int calculateGPA(int x);
-void intCheck();
-void stringcheck(string &value);
-void phonecheck(string &value);
-void add_members();
-void admin_menu();
-void view_student();
-void view_all();
-void remove_student();
-void changedetails_1();
-void changedetails_2();
+int calculateGPA(int x);    //  calculated gpa
+void intCheck();    //handles an integer input
+void stringcheck(string &value);    //handles a string input
+void phonecheck(string &value); //handles a string input
+void add_members(); //  used to add new members
+void admin_menu();  // a menu for adminintrative feartures
+void view_student();    // a function to view detail of specific students
+void view_all();    // a func to view a list of all students
+void remove_student();  //to remove a student
+void changedetails_1(); // used to change details of students
+void changedetails_2(); // used to change details of students
 
 
 
 //===========================================================================
 // ============================= VARIABLES ==================================
 //===========================================================================
-char choice;
-bool repeat;
-bool isintvalid;
-bool isphonevalid;
-bool isstringvalid;
-long long int rolenumber;
+char choice;  // for carrying various choices
+bool repeat;  // a flag  for repitiion
+bool isintvalid;    // flag if integr is valid or not
+bool isphonevalid;   // flag if phone no is valid or not
+bool isstringvalid;   // flag if string entered is valid or not
+long long int rolenumber;  // carries user entered rolenumber
 // ARRAYS FOR STORING STUDENT INFORMATION
-int rollno[10000]={0,1,2};
-string studentname[10000]={"","Asad khan","Saad Khan"};         //THIS DATA WILL BE ALREADY STORED
-string father[10000]={"","Abdul Wahid","Amjad Ali"};
-string studentphone[10000]={"","03484755592","03458877645"};
-int studentpassword[10000]={0,4774,4774};
-string regNO[10000];
-// COURSES GPA
-float cgpa[10000]={0,3.5,3.3}; 
-float phy_gpa[10000]={0,3.5,3.3};
-float bio_gpa[10000]={0,3.5,3.3};
-float chem_gpa[10000]={0,3.5,3.3};
-float math_gpa[10000]={0,3.5,3.3};
+int rollno[10000]={0,1,2};  // to store roll numbers
+string studentname[10000]={"","Muhammad Saad","Saad Sani"}; // stores names of stundents
+string father[10000]={"","saad's Father","Saad's Father"};  // stores students' fathsers names
+string studentphone[10000]={"","03451234567","03451234567"}; // stores contact numbers
+int studentpassword[10000]={0,4774,4774}; // stores pin for students
+// ARRAYS TO STORE COURSES GPA
+float cgpa[10000]={0,3.1,3.3}; // semester gpa
+float phy_gpa[10000]={0,3.2,3.5};
+float bio_gpa[10000]={0,3.0,3.6};
+float chem_gpa[10000]={0,4.0,3.0};
+float math_gpa[10000]={0,3.5,3.1};
 float eng_gpa[10000]={0,3.5,3.3};
 
 
@@ -70,26 +70,32 @@ int main(){
 //========================================= MAIN MENU FUNNCTION===================================================================
 //================================================================================================================================
 void main_menu(){
-    string option;  // WILL TAKE THIS STRINNG TO HANDLE ALPHABETS
-    bool repeat;
-    do{
-        repeat=false;
-        cout<<"\n======  WELCOME TO THE CAMPUS PORTAL  ======\n\n";
-        cout<<"1. Run as Admin.\n2. Run as student.\n3. End program.\n\nChoose option: ";
-        cin>>option;
-        if(option=="1"){
-                admin_menu();
-        }else if(option=="2"){
-            student_login();
-        }else if(option=="3"){
-            return;
+    string option;  // Variable to store the user's input as a string, allowing handling of alphabets or invalid input.
+    bool repeat;  // Flag to determine whether the menu should repeat due to invalid input.
+
+    do {
+        repeat = false;  // Reset the repeat flag at the start of each loop iteration.
+
+        // Display the main menu options.
+        cout << "\n======  WELCOME TO THE CAMPUS PORTAL  ======\n\n";
+        cout << "1. Run as Admin.\n2. Run as Student.\n3. End Program.\n\nChoose option: ";
+        cin >> option;  // Take the user's input.
+
+        // Check the user's input and execute the corresponding functionality.
+        if (option == "1") {
+            admin_menu();  // Navigate to the admin menu.
+        } else if (option == "2") {
+            student_login();  // Navigate to the student login.
+        } else if (option == "3") {
+            exit(0);  // Exit the program.
+        } else {
+            // Handle invalid input.
+            repeat = true;  // Set the flag to repeat the menu.
+            cout << "\n>>>>>> Please enter a valid input <<<<<<<" << endl;
         }
-        else{
-            repeat=true;
-            cout<<"\n>>>>>>Please enter valid input<<<<<<<"<<endl;
-        }
-    }while(repeat==true);
+    } while (repeat == true);  // Repeat the menu if the input is invalid.
 }
+
 
 
 
@@ -116,7 +122,7 @@ void student_login(){
             continue; // SKIP THIS  ITERATION
         }else{
             if(temp_rollno>0 && temp_rollno<=10000){    // ROLL NO SHOULD BE LESS THAN 10000 TO  AVOID MESSING WITH ARRAYS
-                cout<<"Enter 4 digit password"<<endl;
+                cout<<"Enter 4 digit pin"<<endl;
                 cin>>temp_password;
                 //  INPUT VALIDATION AGAIN
                 if(cin.fail()){
@@ -130,9 +136,9 @@ void student_login(){
                         student_menu(temp_rollno);  // WILL PRINT STUDENT DETAILS IF ROLL NO AND PASSWORD MATCH
                     }
                     else{
-                        cout<<"\n>>>>>This rollno or password doesnot exist. Enter again<<<<<<"<<endl;
+                        cout<<"\n>>>>>This rollno or pin doesnot exist. Enter again<<<<<<"<<endl;
                         string try_again;
-                        cout<<"Press 1 to go Back to start || Press any key to continue."<<endl;
+                        cout<<"Press 1 to go Back to start || Press any key to try again."<<endl;
                         cin>>try_again;
                         if(try_again=="1"){
                             main_menu();
@@ -161,13 +167,13 @@ void student_login(){
 //========================================= STUDENT MENU FUNNCTION================================================================
 //================================================================================================================================
 void student_menu(int rollno){
-    bool repeat=true;
+    bool repeat=true;   // flag for repetiiton
     do{
         cout<<"\n\n================== STUDENT PROFILE ===================\n"<<endl;
         cout<<"NAME : "<<studentname[rollno]<<endl;
         cout<<"FATHER NAME : "<<father[rollno]<<endl;
         cout<<"CONTACT NUMBER : "<<studentphone[rollno]<<endl;
-        cout<<"LOGIN PASSWORD : "<<studentpassword[rollno]<<endl;
+        cout<<"LOGIN PIN : "<<studentpassword[rollno]<<endl;
         cout<<"\n=== COURSES ==="<<endl;
         cout<<"1. PHYSICS -  GPA: "<<phy_gpa[rollno]<<endl;
         cout<<"2. CHEMISTRY -  GPA: "<<chem_gpa[rollno]<<endl;
@@ -181,10 +187,11 @@ void student_menu(int rollno){
         cout<<"1. Back to start.\n2. End program."<<endl;
         cin>>condition;
         if(condition=="1"){
-            main_menu();
+            main_menu();    // navigate to mainmenu
         }else if(condition=="2"){
-            return;
+            exit(0); // end program
         }else{
+            // input handling
             cout<<">>>Enter valid input<<<"<<endl;
             repeat=false;
         }
@@ -215,8 +222,7 @@ void admin_menu()
         cout << "3. View All Students\n";
         cout << "4. Remove Student\n";
         cout << "5. Change Details\n";
-        cout << "6. Schedule\n";
-        cout << "7. Back To start\n";
+        cout << "6. Back To start\n";
         cout << "---------------------------------------\n";
         cout << "Enter your choice (1-7): ";
         cin >> select;
@@ -253,17 +259,9 @@ void admin_menu()
             changedetails_1();
             break;
 
+        
+
         case 6:
-            cout << "\n=======================================\n";
-            cout << "          SCHEDULE SECTION            \n";
-            cout << "=======================================\n";
-            // will be added soon
-
-            // main_scedule();
-            // admin_main();
-            break;
-
-        case 7:
             cout << "\n=======================================\n";
             cout << "              GOODBYE!                \n";
             cout << "=======================================\n";
@@ -278,7 +276,7 @@ void admin_menu()
             cout << "          ERROR MESSAGE               \n";
             cout << "=======================================\n";
             cout << "Invalid input!\n";
-            cout << "Please enter a number between 1 and 7.\n";
+            cout << "Please enter a number between 1 and 6.\n";
             cout << "---------------------------------------\n";
             break;
         }
@@ -310,8 +308,8 @@ int calculateGPA(int x)
 // ================  CHECKING OF INTGER INPUT =======================
 void intCheck()
 {
-    // check if it is a intgeer
-    if (cin.fail())
+    // if not integer
+    if (cin.fail()) 
     {
         cin.clear();
         cin.ignore(100, '\n');
@@ -344,10 +342,7 @@ void stringcheck(string &value)
         {
             isstringvalid = false;
         }
-        else
-        {
-            repeat = true;
-        }
+        
     }
     if (isstringvalid == false)
     {
@@ -360,7 +355,7 @@ void phonecheck(string &value)
 {
     // check if it is a string but wiht only letters
     // also used from regno
-    isstringvalid = true;
+    isphonevalid = true;
     // Check if string is empty
 
     if (value.empty())
@@ -380,7 +375,7 @@ void phonecheck(string &value)
             isphonevalid = false;
         }
     }
-    if (isintvalid == false)
+    if (isphonevalid == false)
     {
         cout << "Enter numbers only" << endl;
     }
@@ -414,10 +409,9 @@ void add_members()
             {
                 cout << "\nStudent Already Exists:\n";
                 cout << "Name: " << studentname[rolenumber] << "\n"
-                     << "Registration Number: " << regNO[rolenumber] << "\n"
                      << "Father Name: " << father[rolenumber] << "\n"
                      << "Phone Number: " << studentphone[rolenumber] << "\n"
-                     << "Password: " << studentpassword[rolenumber] << "\n"
+                     << "Pin: " << studentpassword[rolenumber] << "\n"
                      << "Physics GPA: " << phy_gpa[rolenumber] << "\n"
                      << "Chemistry GPA: " << chem_gpa[rolenumber] << "\n"
                      << "Biology GPA: " << bio_gpa[rolenumber] << "\n"
@@ -430,7 +424,7 @@ void add_members()
             {
                 do
                 {
-                    cout << "Enter Password 4 digit: ";
+                    cout << "Enter 4 digit PIN: ";
                     cin >> studentpassword[rolenumber];
                     intCheck();
                     if (isintvalid == false)
@@ -466,21 +460,9 @@ void add_members()
                             continue;
                         }
                         repeat = false;
-                    } while (repeat != false);
+                    } while (repeat == true);
 
-                    do
-                    {
-                        cout << "Enter Registration Number: ";
-                        cin >> regNO[rolenumber];
-                        phonecheck(regNO[rolenumber]);
-                        if (isphonevalid == false)
-                        {
-                            repeat = true;
-                            continue;
-                        }
-                        repeat = false;
-                    } while (repeat != false);
-
+                    
                     do
                     {
                         cout << "Enter Father Name: ";
@@ -493,7 +475,7 @@ void add_members()
                             continue;
                         }
                         repeat = false;
-                    } while (repeat != false);
+                    } while (repeat == true);
 
                     do
                     {
@@ -513,7 +495,7 @@ void add_members()
                         }
 
                         repeat = false;
-                    } while (repeat != false);
+                    } while (repeat == true);
 
                     do
                     {
@@ -611,7 +593,6 @@ void add_members()
                 // Your existing code for displaying results...
                 cout << "\nStudent Details Added:\n";
                 cout << "Name: " << studentname[rolenumber] << "\n"
-                     << "Registration Number: " << regNO[rolenumber] << "\n"
                      << "Father Name: " << father[rolenumber] << "\n"
                      << "Phone Number: " << studentphone[rolenumber] << "\n"
                      << "Password: " << studentpassword[rolenumber] << "\n"
@@ -671,7 +652,7 @@ void view_student(){
     cout<<"NAME : "<<studentname[rolenumber]<<endl;
     cout<<"FATHER NAME : "<<father[rolenumber]<<endl;
     cout<<"CONTACT NUMBER : "<<studentphone[rolenumber]<<endl;
-    cout<<"LOGIN PASSWORD : "<<studentpassword[rolenumber]<<endl;
+    cout<<"LOGIN PIN : "<<studentpassword[rolenumber]<<endl;
     cout<<"\n=== COURSES ==="<<endl;
     cout<<"1. PHYSICS -  GPA: "<<phy_gpa[rolenumber]<<endl;
     cout<<"2. CHEMISTRY -  GPA: "<<chem_gpa[rolenumber]<<endl;
@@ -871,7 +852,7 @@ void changedetails_2()
                 << "6 : English GPA\n"
                 << "7 : Father Name\n"
                 << "8 : Phone Number\n"
-                << "9: Password\n"
+                << "9:  Pin\n"
                 << "10: Back to menu\n"
                 << "---------------------------------------\n"
                 << "Enter your choice (1-10): ";
@@ -987,7 +968,7 @@ void changedetails_2()
 
         case 9:
             do {
-                cout << "Enter the new password (4 digits): ";
+                cout << "Enter the new PIN (4 digits): ";
                 cin >> new_password;
                 intCheck();
                 if (isintvalid == false)
@@ -997,7 +978,7 @@ void changedetails_2()
                 }
                 if (new_password < 1000 || new_password > 9999)
                 {
-                    cout << ">>> Please enter a 4-digit password <<<" << endl;
+                    cout << ">>> Please enter a 4-digit PIN <<<" << endl;
                     repeat = true;
                     continue;
                 }
@@ -1035,7 +1016,7 @@ void changedetails_2()
          << "---------------------------------------\n"
          << "Father Name    : " << father[rolenumber] << "\n"
          << "Phone Number   : " << studentphone[rolenumber] << "\n"
-         << "Password       : " << studentpassword[rolenumber] << "\n"
+         << "PIN       : " << studentpassword[rolenumber] << "\n"
          << "---------------------------------------\n";
 
     
