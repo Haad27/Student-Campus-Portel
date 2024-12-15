@@ -1,2 +1,2 @@
 # Student-Campus-Portel
-End of First Semister project 
+Main project is in project.cpp
