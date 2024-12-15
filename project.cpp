@@ -329,16 +329,14 @@ void stringcheck(string &value)
 
     isstringvalid = true;
     // Check if string is empty
-
     if (value.empty())
     {
         isstringvalid = false;
     }
-
     // Check each character
     for (char x : value)
     {
-        if (isdigit(x))
+        if (isdigit(x)==true)
         {
             isstringvalid = false;
         }
@@ -353,27 +351,21 @@ void stringcheck(string &value)
 // ================  CHECKING OF STRING PHONE NUMBER INPUT =======================
 void phonecheck(string &value)
 {
-    // check if it is a string but wiht only letters
-    // also used from regno
+    // check if it is only numbers in string
     isphonevalid = true;
     // Check if string is empty
-
     if (value.empty())
     {
         isphonevalid = false;
     }
-
     // Check each character
     for (char x : value)
     {
-        if (isdigit(x))
-        {
-            isphonevalid = true;
-        }
-        else
+        if (isdigit(x)==false)
         {
             isphonevalid = false;
         }
+        
     }
     if (isphonevalid == false)
     {
@@ -423,7 +415,7 @@ void add_members()
             else
             {
                 do
-                {
+                {   // getting password
                     cout << "Enter 4 digit PIN: ";
                     cin >> studentpassword[rolenumber];
                     intCheck();
@@ -431,7 +423,7 @@ void add_members()
                     {
                         repeat = true;
                         continue;
-                    }
+                    }   // ccheck if its 4 digit or not
                     else if (studentpassword[rolenumber] <= 999 || studentpassword[rolenumber] > 9999)
                     {
                         repeat = true;
@@ -441,7 +433,7 @@ void add_members()
                     repeat = false;
                 } while (repeat != false);
 
-                rollno[rolenumber] = rolenumber;
+                rollno[rolenumber] = rolenumber;  // assign roll  no in rollno array
 
                 // getting data
                 do
@@ -449,7 +441,7 @@ void add_members()
                     cout << "\nEnter details for student " << rolenumber << ":\n";
 
                     do
-                    {
+                    {   // getting name
                         cout << "Enter Name: ";
                         cin.ignore();
                         getline(cin, studentname[rolenumber]);
@@ -462,7 +454,7 @@ void add_members()
                         repeat = false;
                     } while (repeat == true);
 
-                    
+                    // getting father name
                     do
                     {
                         cout << "Enter Father Name: ";
@@ -478,11 +470,11 @@ void add_members()
                     } while (repeat == true);
 
                     do
-                    {
+                    {   // getting phone number
                         cout << "Enter Phone Number: ";
                         cin >> studentphone[rolenumber];
-                        phonecheck(studentphone[rolenumber]);
-                        if (studentphone[rolenumber].size() != 11)
+                        phonecheck(studentphone[rolenumber]);// check if there is an alphabet
+                        if (studentphone[rolenumber].size() != 11)//check if 11 digit or not
                         {
                             cout << "Phone number must be 11 digits" << endl;
                             repeat = true;
@@ -497,6 +489,7 @@ void add_members()
                         repeat = false;
                     } while (repeat == true);
 
+                    // entering courses gpa one by one
                     do
                     {
                         cout << "Enter Physics GPA: ";
@@ -589,8 +582,8 @@ void add_members()
 
                     repeat = false;
                 } while (repeat != false);
-                calculateGPA(rolenumber);
-                // Your existing code for displaying results...
+                calculateGPA(rolenumber);   // calculating semester gpa and assigning to role number
+                // displaying results of newly added student...
                 cout << "\nStudent Details Added:\n";
                 cout << "Name: " << studentname[rolenumber] << "\n"
                      << "Father Name: " << father[rolenumber] << "\n"
@@ -607,7 +600,7 @@ void add_members()
 
 
         }
-        else
+        else    //if role number  is greter than 10,000
         {
             cout << "Role number out of range. Please enter again" << endl;
             repeat = true;
@@ -625,10 +618,10 @@ void add_members()
 //================================================================================================================================
 void view_student(){
     do{
-        repeat=false;
-        cout<<"Enter the students roll no(1 - 10,000): "<<endl;
+        repeat=false;   //flag to deal with input validations
+        cout<<"Enter the students roll no(1 - 10,000): "<<endl;// enter roll no to view his details
         cin>>rolenumber;
-        intCheck();
+        intCheck(); // check if integer entered or nt
         if(isintvalid==false){
             repeat=true;
             continue;
@@ -637,7 +630,7 @@ void view_student(){
             repeat=true;
             continue;
         }
-        else{
+        else{   //chek if student exists with thhis rollno or not
             if(rolenumber==rollno[rolenumber]){
                 repeat=false;
             }else{
@@ -647,7 +640,7 @@ void view_student(){
             }
         }
     }while(repeat==true);
-
+    // if student exists print details
     cout<<"\n\n================== STUDENT PROFILE ===================\n"<<endl;
     cout<<"NAME : "<<studentname[rolenumber]<<endl;
     cout<<"FATHER NAME : "<<father[rolenumber]<<endl;
@@ -661,7 +654,7 @@ void view_student(){
     cout<<"5. ENGLISH -  GPA: "<<eng_gpa[rolenumber]<<endl;
     cout<<"\nSEMESTER -  GPA: "<<cgpa[rolenumber]<<endl;
     cout<<"============================================"<<endl<<endl;
-    do{
+    do{ // further menu to navigate 
         repeat=false;
         string condition;
         // A MENU FURTHER
@@ -689,7 +682,7 @@ void view_student(){
 //================================================================================================================================
 void view_all()
 {
-    bool  are_there_any_students=false;
+    bool  are_there_any_students=false; //flag to deal if there is not student
     cout << "\n=======================================\n";
     cout << "         ALL STUDENT RECORDS          \n\n";
 
@@ -698,10 +691,10 @@ void view_all()
         if (rollno[i] != 0)
         {
             cout<<"Roll Number: "<<rollno[i]<<" | Name: "<<studentname[i]<<endl;
-            are_there_any_students=true;
+            are_there_any_students=true;    //students found so flag becomes true 
         }
     }
-    
+    // if flag false then no student exists
     if(are_there_any_students==false){
         cout << "\n---------------------------------------\n";
         cout << "          NO RECORDS FOUND            \n";
@@ -724,22 +717,27 @@ void view_all()
 
 void remove_student()
 {
-    int remove;
-    string confirm;
+    long long int remove;   // will store roll no  to be removed
+    string confirm; //flag for confirmation
 
     do
     {
         
         cout << "\nEnter Registration Number to remove: ";
         cin >> remove;
-
-        intCheck();
+        //check if roll noo out of range
+        if(remove<0 || remove>9999){
+            cout<<"Roll no out of range, Please Try again;";
+            repeat=true;
+            continue;
+        }
+        intCheck(); // check if integer
         if (isintvalid == false)
         {
             repeat = true;
             continue;
         }
-
+        // chek if student exist or not
         else if (rollno[remove] == 0)
         {
             cout << ">>> Student with this Roll number does not exist! <<<" << endl;
@@ -749,19 +747,19 @@ void remove_student()
 
         // Confirmation before deletion
         do
-        {
-            cout<<"Roll no: "<<rollno[remove]<<" | Name: "<<studentname[remove]<<endl;
+        {       // ask for confirmation
+            cout<<"Roll no: "<<rollno[remove]<<" | Name: "<<studentname[remove]<<endl;  //print hhis name and roll no
             cout << "Are you sure you want to remove this student? (Y/N): ";
             cin >> confirm;
 
             if (confirm=="y" || confirm=="Y"){
-                rollno[remove] = {};
+                rollno[remove] = {};//empties his roll no to  zero
                 cout << "\nStudent successfully removed from the system!\n";
                 cout << "---------------------------------------\n";
             }else if(confirm=="n" || confirm=="N"){
                 cout << "\n>>> Deletion cancelled <<<\n";
             }                
-            else{
+            else{   //repeat if incorrect input
                 cout << ">>> Please enter a single character (Y/N) <<<" << endl;
                 repeat = true;
                 continue;
@@ -786,36 +784,42 @@ void remove_student()
 //================================================================================================================================
 void changedetails_1()
 {
-    string input;
   
     do
     {
         cout << "\n=======================================\n";
         cout << "         MODIFY STUDENT RECORD         \n";
         cout << "=======================================\n";
-        cout << "\nEnter Your Registration Number: ";
-        cin >> rolenumber;
+        cout << "\nEnter Roll Number to change details: ";
+        cin >> rolenumber;  // roll no to edit details
         
-        intCheck();
+        intCheck(); // chek if int
         if (isintvalid == false)
         {
-            cout << ">>> Please enter a valid registration number <<<" << endl;
+            cout << ">>> Please enter a valid Roll number <<<" << endl;
             repeat = true;
             continue;
         }
-        
+        // check if in range
         else if (rolenumber < 1 || rolenumber > 9999)
         {
-            cout << ">>> Please enter valid registration number(1-10000) <<<" << endl;
+            cout << ">>> Please enter valid Roll number(1-10000) <<<" << endl;
             repeat = true;
             continue;
         }
-        
+        // check if this student exists
         else if (rollno[rolenumber] == 0)
         {
             cout << "\nStudent not found!\n";
             cout << "Please enroll first from the main menu.\n";
             cout << "---------------------------------------\n";
+            // option for going back to admin menu
+            cout<<"Enter 1 to go to menu. Or press any key to try again: ";
+            string opt;
+            cin>>opt;
+            if(opt=="1"){
+                admin_menu();
+            }
             repeat = true;
             continue;
         }
@@ -825,24 +829,24 @@ void changedetails_1()
     } while (repeat);
 
     cin.ignore();
-    changedetails_2();
+    changedetails_2();  // nowcall the second function for changing details
 }
 
 void changedetails_2()
-{
+{   // flag for showing menu  unless false
     bool keep_cahnging=true;
     while(keep_cahnging==true){
+        // New variables to get new input and then store them in arrays
         string new_name, new_father_name, new_phone;
         int new_rollno, new_password;
         float newGPA;
-        int choice;
         float new_cgpa;
+        int choice;
 
-        // Display current details (keep existing display code)
+        // Display Menu for changing details details
         cout << "\n=======================================\n";
-        // ... (previous display code remains the same until choice input)
-
         do {
+            //first show the students name and roll no and then menu
             cout<<"Roll no: "<<rollno[rolenumber]<<" | Name: "<<studentname[rolenumber]<<endl;
             cout << "1 : Name\n"
                 << "2 : Physics GPA\n"
@@ -857,8 +861,7 @@ void changedetails_2()
                 << "---------------------------------------\n"
                 << "Enter your choice (1-10): ";
             cin >> choice;
-            
-            intCheck();
+            intCheck(); // input validations
             if (isintvalid == false)
             {
                 repeat = true;
@@ -866,7 +869,7 @@ void changedetails_2()
             }
             
             if (choice < 1 || choice > 10)
-            {
+            {   // if incorrect choice show menu again
                 cout << ">>> Please enter a number between 1 and 10 <<<" << endl;
                 repeat = true;
                 continue;
@@ -880,7 +883,7 @@ void changedetails_2()
 
         switch (choice)
         {
-        case 1:
+        case 1: // for changing name
             do {
                 cout << "Enter the new name: ";
                 cin.ignore();
@@ -896,7 +899,7 @@ void changedetails_2()
             } while (repeat);
             break;
 
-
+        // cases for changing gpa of any subject
         case 2:
         case 3:
         case 4:
@@ -905,7 +908,7 @@ void changedetails_2()
             do {
                 cout << "Enter the new GPA (0.0 - 4.0): ";
                 cin >> newGPA;
-                intCheck();
+                intCheck(); // input validations
                 if (isintvalid == false)
                 {
                     repeat = true;
@@ -917,7 +920,7 @@ void changedetails_2()
                     repeat = true;
                     continue;
                 }
-                
+                // now depending upon previous choice change only that GPA
                 switch(choice) {
                     case 3: phy_gpa[rolenumber] = newGPA; break;
                     case 4: chem_gpa[rolenumber] = newGPA; break;
@@ -929,7 +932,7 @@ void changedetails_2()
             } while (repeat);
             break;
 
-        case 7:
+        case 7: //father name change
             do {
                 cout << "Enter the new father name: ";
                 cin.ignore();
@@ -944,11 +947,12 @@ void changedetails_2()
                 repeat = false;
             } while (repeat);
             break;
-
+        // changing phone number
         case 8:
             do {
                 cout << "Enter the new phone number: ";
                 cin >> new_phone;
+                // input validations
                 phonecheck(new_phone);
                 if (!isstringvalid)
                 {
@@ -965,17 +969,18 @@ void changedetails_2()
                 repeat = false;
             } while (repeat);
             break;
-
+        // Changing pin
         case 9:
             do {
                 cout << "Enter the new PIN (4 digits): ";
                 cin >> new_password;
+                // input validations
                 intCheck();
                 if (isintvalid == false)
                 {
                     repeat = true;
                     continue;
-                }
+                }// to ensure its 4 digit
                 if (new_password < 1000 || new_password > 9999)
                 {
                     cout << ">>> Please enter a 4-digit PIN <<<" << endl;
@@ -986,19 +991,18 @@ void changedetails_2()
                 repeat = false;
             } while (repeat);
             break;
-
+        // this will turn the flag for while loop into false and while loop will break
         case 10:
             keep_cahnging=false;
         }
         cout<<"<== Details Changed ==>"<<endl;
-        // Calculate new CGPA
+        // this Calculate new CGPA if any subject gpa has been changed and will assign it to rolenumber in parameter
         calculateGPA(rolenumber);
 
     }
-    // Display updated details (keep existing display code)
+    // Display updated details
     cout << "\n=======================================\n";
     cout << "        UPDATED STUDENT DETAILS       \n";
-
 
     cout << "---------------------------------------\n";
     cout << "Name            : " << studentname[rolenumber] << "\n"
