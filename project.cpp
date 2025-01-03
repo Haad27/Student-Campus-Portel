@@ -838,9 +838,8 @@ void changedetails_2()
     while(keep_cahnging==true){
         // New variables to get new input and then store them in arrays
         string new_name, new_father_name, new_phone;
-        int new_rollno, new_password;
+        int new_password;
         float newGPA;
-        float new_cgpa;
         int choice;
 
         // Display Menu for changing details details
